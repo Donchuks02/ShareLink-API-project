@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from environs import Env
+import dj_database_url
 
 env = Env()
 env.read_env()
@@ -99,7 +100,16 @@ SITE_ID = 1
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
+
+# In our development environment, set DEBUG to True, but in production, it should be False. When DEBUG = False, our Django project will utilize the 🐘 Postgres database, while when DEBUG = True, it will use the 📁 Sqlite3 database.
+
+if not DEBUG: # The code block above is equivalent to DEBUG = False
+    DATABASES = {
+	"default": dj_database_url.parse(env.str("DATABASE_URL"))
+}
+
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
