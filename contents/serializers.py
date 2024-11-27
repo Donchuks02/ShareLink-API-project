@@ -7,7 +7,6 @@ class ContentSerializer(serializers.ModelSerializer):
     model = Content
     fields = (
       "id",
-      "owner",
       "body",
     )
 

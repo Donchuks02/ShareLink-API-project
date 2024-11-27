@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "drf_spectacular",
+    'pytest'
 ]
 
 MIDDLEWARE = [
@@ -176,6 +177,7 @@ REST_FRAMEWORK = {
     # "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
 }
 
 SPECTACULAR_SETTINGS = {

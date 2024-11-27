@@ -12,6 +12,9 @@ class ContentList(generics.ListCreateAPIView):
   queryset = Content.objects.all()
   serializer_class = ContentSerializer
 
+  def perform_create(self, serializer):
+    serializer.save(owner=self.request.user)
+
 
 class ContentDetail(generics.RetrieveUpdateDestroyAPIView):
   permission_classes = (IsOwnerOrReadOnly,)
